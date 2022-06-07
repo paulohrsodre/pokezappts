@@ -1,16 +1,15 @@
 import React, {useState, useEffect} from 'react';
 import Searchbar from '../components/Searchbar';
-import '../App.css';
-import { getPokemons, getPokemonData } from '../api'
+import { getPokemons, getPokemonData, searchPokemon } from '../api'
 import Pokedex from '../components/Pokedex'
-
 
 export default function Pokemons() {
 
-  const [page, totalPages] = useState(0)
-  const [setPage, setTotalPages] = useState(0)
+  const [page, totalPages] = useState(0);
+  const [setPage, setTotalPages] = useState(0);
   const [loading, setLoading] = useState(false);
-  const [pokemons, setPokemons] = useState([])
+  const [pokemons, setPokemons] = useState([]);
+  const [notFound, setNotFound] = useState(false);
 
   const itensPerPage = 18
   const fetchPokemons = async () => {
@@ -34,22 +33,41 @@ export default function Pokemons() {
     fetchPokemons();
   }, [page])
 
+  const onSearchHandler = async (pokemon) => {
+    if(!pokemon) {
+      return fetchPokemons();
+    }
+    setLoading(true)
+    setNotFound(false)
+    const result = await searchPokemon(pokemon)
+    if(!result) {
+      setNotFound(true)
+    } else {
+      setPokemons([result])
+      setPage(0)
+      setTotalPages(1)
+    }
+    setLoading(false)
+  }
+
   return (
     <div className='center'>
       <div className='main'>
         <div>
           <h1>Mais de 250 pokemons para você escolher seu favorito</h1>
-          <Searchbar />
-        </div>
-        <div>
-          <Pokedex 
+          <Searchbar onSearch = {onSearchHandler}/>
+          {notFound ? (
+            <div class-name="not-found-text"> Meteu essa?! </div>
+          ) :
+        
+          (<Pokedex 
             pokemons={pokemons} 
             loading={loading}
             page={page}
             setPage={setPage}
             totalPages={totalPages}
-          />  
-        </div>      
+          />)}  
+        </div>   
       </div>
     </div>
   )

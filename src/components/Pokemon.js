@@ -5,7 +5,7 @@ const Pokemon = (props) => {
     const onHeartClick = () => {
         console.log("favoritar")
     }
-    const heart="❤️"
+    const heart= "❤️" 
 
     console.log("pokemon", pokemon)
     return (
