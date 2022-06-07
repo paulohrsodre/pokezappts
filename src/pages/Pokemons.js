@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import Searchbar from '../components/Searchbar';
 import { getPokemons, getPokemonData, searchPokemon } from '../api'
 import Pokedex from '../components/Pokedex'
+import Pagination from "../components/Pagination";
 
 export default function Pokemons() {
 
@@ -27,6 +28,14 @@ export default function Pokemons() {
       console.log("fetchPokemons error: ", error)
     }
   }
+
+  const onLeftClickHandler = () => {
+    if(page > 0) setPage(page-1)
+  }
+  const onRightClickHandler = () => {
+    if(page+1 !== totalPages) setPage(page+1)
+  }
+  console.log("pokemons", pokemons)
 
   useEffect(() => {
     console.log("carregou")
@@ -67,6 +76,14 @@ export default function Pokemons() {
             setPage={setPage}
             totalPages={totalPages}
           />)}  
+        </div>
+        <div>
+          <Pagination 
+              page={page+1}
+              totalPages={totalPages}
+              onLeftClick={onLeftClickHandler}
+              onRightClick={onRightClickHandler}
+          />
         </div>   
       </div>
     </div>
