@@ -1,6 +1,9 @@
 import '../App.css';
+import { useNavigate } from 'react-router-dom';
 
-function Home() {
+export default function Home() {
+    const navigate = useNavigate();
+
     return (
         <div>          
             <h1>Qual Pokemon você escolheria?</h1>
@@ -18,9 +21,13 @@ function Home() {
                 consequat tincidunt. Pellentesque habitant morbi tristique 
                 senectus et netus et malesuada fames ac turpis egestas. 
                 In hac habitasse platea dictumst. Sed et arcu urna.</p>
+
+                <button onClick={() => navigate('/pokemons')}>
+                    Veja os Pokemons
+                </button>
         </div>
+
+        
         
     );
 }
-
-export default Home;
