@@ -1,22 +1,15 @@
 import './App.css';
 import Navbar from './components/Navbar';
-import Logo from './images/PokeZappts_logo.png'
+import RouterApp from './routes'
 
 function App() {
   return (
     <div className="App">
-      <header className='menu'>
-        <div className='logo'>
-          <img 
-            src= { Logo }
-            alt='logo pokezappts'
-          ></img>
-        </div>
-        <Navbar />
-      </header>
+      <Navbar />
+      
       <div className='main'>
         <div className='center'>
-          
+          <RouterApp />
         </div>
       </div>
     </div>

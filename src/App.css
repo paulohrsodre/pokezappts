@@ -4,6 +4,10 @@
   margin: 0;
 }
 
+p{
+  font-size: 40px;
+}
+
 .center{
   max-width: 960px;
   margin: 0 auto;
