@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import '../App.css';
 
 export default function Searchbar(props) {
   const [search, setSearch] = useState("ditto")

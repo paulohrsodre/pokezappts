@@ -1,4 +1,3 @@
-import '../App.css';
 import Logo from '../images/PokeZappts_logo.png'
 import { Link } from 'react-router-dom';
 
